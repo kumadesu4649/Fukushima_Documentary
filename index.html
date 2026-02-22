@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fukushima Documentary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+</head>
+<body>
+  <!-- マップ背景divをここから削除 -->
+
+  <div class="main-container"> <!-- 全体を包むコンテナへ変更 -->
+    <header class="header-nav">
+      <div class="logo">Fukushima<br>Documentary</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#scenes">Scenes</a>
+      </nav>
+    </header>
+
+    <!-- 背景画像を持つヒーローセクションに変更 -->
+    <section class="hero-section">
+      <div class="hero__bg" style="background-image: url('https://images.unsplash.com/photo-1490713589436-1c88435d8205?q=80&w=2834&auto=format&fit=crop');"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <p class="eyebrow">A Film by Yoh Documentary Movie</p>
+        <h1>福島の<br>記憶を歩く</h1>
+        <p class="lede">風景に刻まれた時間を辿る、インタラクティブ・ドキュメンタリー。</p>
+        <div class="hero__actions">
+          <button class="btn primary" onclick="scrollToScenes()">Start Journey</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- コンテンツエリア -->
+    <div class="content-wrapper">
+      <section class="section normal-panel" id="about">
+        <div class="section__header">
+          <p class="eyebrow">Introduction</p>
+          <h2>作品について</h2>
+          <p class="body">撮影地：福島県内全域。長回しによる風景描写と、そこに息づく人々の声を記録。</p>
+        </div>
+        <div class="info-grid">
+          <div class="card minimal">
+            <h3>Concept</h3>
+            <p class="body">静寂と喧騒、光と影。対比の中に浮かび上がる「現在」の福島。</p>
+          </div>
+          <div class="card minimal">
+            <h3>Location</h3>
+            <p class="body">会津の山間部から、いわきの海岸線まで。季節の移ろいと共に。</p>
+          </div>
+          <div class="card minimal">
+            <h3>Sound</h3>
+            <p class="body">環境音（アンビエンス）そのものを語り部として扱う音響設計。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 旅の記録：タイトルセクション（ここはまだマップではない） -->
+      <section class="section normal-panel" id="scenes-intro">
+        <div class="section__header">
+          <p class="eyebrow">Scene Log</p>
+          <h2>旅の記録</h2>
+          <p class="body">スクロールすると、撮影順に地図が移動します。</p>
+        </div>
+      </section>
+
+      <!-- 旅の記録：マップ連動セクション -->
+      <section class="section map-background-layout" id="scenes">
+        <!-- マップを背景として配置 -->
+        <div class="sticky-map-container">
+          <div id="map-container"></div>
+        </div>
+
+        <!-- コンテンツはマップの上に重なる -->
+        <div class="scroll-overlay-content">
+          <!-- タイトルは上に移動したため削除 -->
+
+          <!-- タイムライン用のコンテナ -->
+          <div class="timeline-container" id="scene-grid"></div>
+        </div>
+      </section>
+
+      <footer class="footer glass-panel">
+        <p class="body">© 2024 Fukushima Documentary Project</p>
+      </footer>
+    </div>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+  <script src="main.js"></script>
+</body>
+</html>

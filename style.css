@@ -1,0 +1,477 @@
+:root {
+  --bg: #0d1117;
+  --panel: #161b22;
+  --card: #1f2630;
+  --text: #e6edf3;
+  --muted: #9ba3af;
+  --accent: #5ad0ff;
+  --accent-strong: #68f4c1;
+  --border: #2b313c;
+  --radius: 14px;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --bg-dark: #0f1115;
+  --text-muted: #949aa3;
+  --accent-glow: rgba(220, 165, 78, 0.4);
+  --glass: rgba(15, 17, 21, 0.75);
+  --font-serif: "Shippori Mincho", serif;
+  --font-sans: "Inter", -apple-system, sans-serif;
+  --header-height: 80px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-dark); /* グラデーション背景からシンプルに */
+  line-height: 1.7;
+  /* overflow-x: hidden; 不需要な場合は削除、一旦残す */
+}
+
+/* ヘッダー */
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  mix-blend-mode: normal; /* differenceをやめて視認性確保 */
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: white;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.header-nav nav a {
+  margin-left: 24px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+}
+.header-nav nav a:hover {
+  color: var(--accent);
+}
+
+/* 新しいヒーローセクション */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* 暗くして文字を見やすく */
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: block;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 32px;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.btn.primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--text);
+  color: var(--bg-dark);
+  border: 1px solid white;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn.primary:hover {
+  transform: scale(1.02);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* コンテンツラッパー */
+.content-wrapper {
+  background: var(--bg-dark);
+  position: relative;
+  z-index: 2;
+}
+
+/* Aboutセクション */
+.section.normal-panel {
+  padding: 120px 24px;
+  background: var(--bg-dark);
+}
+
+/* グラスモーフィズムパネル共通 */
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  pointer-events: auto; /* パネル内は操作可能 */
+}
+
+.section {
+  padding: 100px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section__header {
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.section__header h2 {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 16px 0;
+}
+
+/* カードデザイン */
+.info-grid {
+  max-width: 1100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px; /* 細い線で区切るようなレイアウト */
+  background: var(--border); /* グリッドの線色 */
+  border: 1px solid var(--border);
+}
+
+/* Map Background Layout -> Split Layout (Map Left, Timeline Right) */
+.map-background-layout {
+  position: relative;
+  padding: 0;
+  overflow: visible;
+  display: flex; /* Flexboxに変更 */
+  flex-direction: row; /* 左から右へ配置 */
+  margin-top: 0;
+}
+
+/* 背景マップのコンテナ */
+.sticky-map-container {
+
+  width: 50vw; /* 左半分 */
+  /* 100vhだとアドレスバーで隠れることがあるため、dvh(Dynamic Viewport Height)を使用 */
+  height: 380dvh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#map-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* スクロールするコンテンツ */
+.scroll-overlay-content {
+  position: relative;
+  z-index: 2;
+  width: 50vw; /* 右半分 */
+  padding: 0 24px 20vh;
+  pointer-events: auto;
+  margin-top: 0; /* 引き上げを解除 */
+  background: var(--bg-dark); /* マップと重ならないので背景色 */
+}
+
+/* タイムライン */
+.timeline-container {
+  max-width: 500px;
+  /* 右側のカラム内で左寄りまたは中央配置 */
+  margin: 0 auto;
+  /* 左側に線を表示するためのパディング */
+  padding-left: 60px;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 70vh;
+  padding-bottom: 40vh;
+  padding-top: 20vh;
+  position: relative;
+}
+
+/* タイムラインの垂直線 */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px; /* 左端からの位置 */
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
+  z-index: 0;
+}
+
+/* シーンカード */
+.scene-card {
+  background: rgba(15, 17, 21, 0.9);
+  border: 1px solid var(--border);
+  /* paddingをなくしてメディアを端まで表示できるように変更し、内部でpadding調整 */
+  padding: 0;
+  border-radius: var(--radius);
+  transition: transform 0.5s ease, border-color 0.3s, opacity 0.5s;
+  opacity: 0.5;
+  transform: scale(0.95);
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+  margin: 0;
+  width: 100%;
+  border-left: 4px solid transparent;
+  position: relative;
+  overflow: hidden; /* 角丸からはみ出ないように */
+}
+
+/* カード内のコンテンツ領域 */
+.scene-card .card-content {
+  padding: 32px;
+}
+
+/* メディアコンテナ（動画・画像） */
+.scene-card .media-container {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* ワイドスクリーン比率 */
+  background: #000;
+  border-bottom: 1px solid var(--border);
+}
+
+.scene-card .media-container video,
+.scene-card .media-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* タイムライン上のドット */
+.scene-card::before {
+  content: '';
+  position: absolute;
+  /* タイムラインの線(.timeline-container::before)と同じ軸になるように調整 */
+  /* 親(.timeline-container)のpadding-leftが60px、線が20pxの位置 */
+  /* カード自身はrelativeなので、カードの左端(0)から見て、左側のどこに置くか計算 */
+  /* カードの左端から -40px の位置にドットの中心(5px)が来ると仮定すると、線の位置(20px)と計算が合わないため修正 */
+
+  /* 正確な位置合わせ: containerの線が left:20px。カードは left:60px から開始。 */
+  /* したがってカードから見て left: -40px の位置に線の中心がある。 */
+  /* ドット幅10pxなので、中心を合わせるには -40px - 5px = -45px */
+  left: -45px;
+
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-dark);
+  border: 2px solid var(--muted);
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+/* カードからドットへの接続線 */
+.scene-card::after {
+  content: '';
+  position: absolute;
+  /* ドットの右端(-35px)からカードの左端(0px)まで繋ぐ */
+  left: -35px;
+  top: 50%;
+  width: 35px;
+  height: 1px;
+  background: var(--border);
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: background 0.3s ease;
+}
+
+.scene-card.active {
+  opacity: 1;
+  transform: scale(1.05);
+  border-color: var(--accent);
+  border-left-color: var(--accent);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* アクティブ時のドット強調 */
+.scene-card.active::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: translateY(-50%) scale(1.5);
+}
+
+/* アクティブ時の接続線強調 */
+.scene-card.active::after {
+  background: var(--accent);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border);
+}
+
+.footer.glass-panel {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-dark);
+}
+
+/* Leaflet Custom Styles */
+/* ポップアップをダークテーマに */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #1a1d21;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  width: 260px !important;
+}
+
+.leaflet-popup-content img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+  margin: 0;
+  display: block;
+}
+
+.leaflet-popup-text {
+  padding: 16px;
+}
+
+.leaflet-popup-content h4 {
+  font-family: var(--font-serif);
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--text);
+  padding: 8px;
+}
+
+@media (max-width: 768px) {
+  /* スマホでは縦並びに戻す */
+  .map-background-layout {
+    flex-direction: column;
+  }
+
+  .sticky-map-container {
+    width: 100%;
+    /* スマホでは画面の40%程度にしてコンテンツを見やすくする */
+    height: 40vh;
+    height: 40dvh;
+    position: sticky;
+    top: var(--header-height, 0); /* ヘッダー分下げる場合 */
+    top: 0;
+  }
+
+  .scroll-overlay-content {
+    width: 100%;
+    padding-top: 40px;
+    /* マップの高さ分を確保しないとコンテンツが被る場合のマージン調整は不要（stickyなので配置は確保される） */
+  }
+
+  .timeline-container {
+    padding-left: 50px;
+  }
+}
